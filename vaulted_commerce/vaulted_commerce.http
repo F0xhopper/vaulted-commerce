@@ -1,0 +1,6 @@
+@vaulted_commerce_HostAddress = http://localhost:5020
+
+GET {{vaulted_commerce_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
