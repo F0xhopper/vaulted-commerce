@@ -1,0 +1,16 @@
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/vaulted_commerce.Framework.csproj.AssemblyReference.cache
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/vaulted_commerce.Framework.GeneratedMSBuildEditorConfig.editorconfig
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/vaulted_commerce.Framework.AssemblyInfoInputs.cache
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/vaulted_commerce.Framework.AssemblyInfo.cs
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/vaulted_commerce.Framework.csproj.CoreCompileInputs.cache
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/vaulted_commerce.Framework.sourcelink.json
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/bin/Debug/net8.0/vaulted_commerce.Framework.deps.json
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/bin/Debug/net8.0/vaulted_commerce.Framework.dll
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/bin/Debug/net8.0/vaulted_commerce.Framework.pdb
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/bin/Debug/net8.0/vaulted_commerce.DataAccessLayer.dll
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/bin/Debug/net8.0/vaulted_commerce.DataAccessLayer.pdb
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/vaulted_.25D28B4F.Up2Date
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/vaulted_commerce.Framework.dll
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/refint/vaulted_commerce.Framework.dll
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/vaulted_commerce.Framework.pdb
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Framework/obj/Debug/net8.0/ref/vaulted_commerce.Framework.dll

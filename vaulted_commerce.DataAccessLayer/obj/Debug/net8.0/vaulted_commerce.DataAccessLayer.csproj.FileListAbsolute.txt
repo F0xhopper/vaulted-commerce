@@ -1,0 +1,13 @@
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/vaulted_commerce.DataAccessLayer.csproj.AssemblyReference.cache
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/vaulted_commerce.DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/vaulted_commerce.DataAccessLayer.AssemblyInfoInputs.cache
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/vaulted_commerce.DataAccessLayer.AssemblyInfo.cs
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/vaulted_commerce.DataAccessLayer.csproj.CoreCompileInputs.cache
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/vaulted_commerce.DataAccessLayer.sourcelink.json
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/bin/Debug/net8.0/vaulted_commerce.DataAccessLayer.deps.json
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/bin/Debug/net8.0/vaulted_commerce.DataAccessLayer.dll
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/bin/Debug/net8.0/vaulted_commerce.DataAccessLayer.pdb
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/vaulted_commerce.DataAccessLayer.dll
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/refint/vaulted_commerce.DataAccessLayer.dll
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/vaulted_commerce.DataAccessLayer.pdb
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.DataAccessLayer/obj/Debug/net8.0/ref/vaulted_commerce.DataAccessLayer.dll

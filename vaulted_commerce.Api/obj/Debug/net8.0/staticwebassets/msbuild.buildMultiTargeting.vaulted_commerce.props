@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/vaulted_commerce.props" />
+</Project>
