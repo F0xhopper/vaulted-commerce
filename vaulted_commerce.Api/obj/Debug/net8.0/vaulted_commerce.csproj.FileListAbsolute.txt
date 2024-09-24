@@ -49,3 +49,4 @@
 /Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Api/obj/Debug/net8.0/vaulted_commerce.pdb
 /Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Api/obj/Debug/net8.0/vaulted_commerce.genruntimeconfig.cache
 /Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Api/obj/Debug/net8.0/ref/vaulted_commerce.dll
+/Users/edenphillips/Desktop/Projects/vaulted-commerce/vaulted_commerce.Api/bin/Debug/net8.0/Microsoft.Extensions.Options.dll

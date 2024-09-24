@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using vaulted_commerce.Framework.Services; // Access ProductService from Framework
 using vaulted_commerce.DataAccessLayer.Entities;
+using vaulted_commerce.Framework.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,11 +10,11 @@ namespace vaulted_commerce.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
 
-        public ProductController(IProductService productService)
+        public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
@@ -40,30 +41,55 @@ namespace vaulted_commerce.Api.Controllers
             return Ok(product);
         }
 
-        // POST: api/Product
-        [HttpPost]
-        public async Task<ActionResult<Product>> Create(Product product)
-        {
-            await _productService.CreateProductAsync(product);
-            return CreatedAtRoute("GetProduct", new { id = product.Id.ToString() }, product);
-        }
+      // POST: api/Product
+[HttpPost]
+public async Task<ActionResult<Product>> Create([FromBody] ProductDto productDto)
+{
+    try
+    {
+        // Call the service to create the product
+        var createdProduct = await _productService.CreateProductAsync(productDto);
+        
+        // Return a 201 Created response with the new product
+        return CreatedAtRoute("GetProduct", new { id = createdProduct.Id }, createdProduct);
+    }
+    catch (ArgumentNullException ex)
+    {
+        // Handle the case where productDto is null
+        return BadRequest(ex.Message);
+    }
+    catch (Exception ex)
+    {
+        // Handle any other exceptions
+        return StatusCode(500, "Internal server error: " + ex.Message);
+    }
+}
+
 
         // PUT: api/Product
-        [HttpPut]
-        public async Task<IActionResult> Update(Product updatedProduct)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Product>> Update(string id, [FromBody] ProductDto productDto)
         {
-            // Get the product by the ID from the body of the updatedProduct
-            var product = await _productService.GetProductByIdAsync(updatedProduct.Id);
-
-            if (product == null)
+            if (productDto == null)
             {
-                return NotFound();
+                return BadRequest("Product data is required.");
             }
 
-            // Update the product without manually setting the ID, as it's already part of updatedProduct
-            await _productService.UpdateProductAsync(updatedProduct);
-            return NoContent();
+            try
+            {
+                await _productService.UpdateProductAsync(id, productDto);
+                return NoContent();  // Return 204 No Content if the update is successful
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+
 
 
         // DELETE: api/Product/{id}

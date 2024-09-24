@@ -1,17 +1,23 @@
-// DataAccessLayer/MongoDbContext.cs
 using MongoDB.Driver;
+using Microsoft.Extensions.Options;
 using vaulted_commerce.DataAccessLayer.Entities;
 
 namespace vaulted_commerce.DataAccessLayer.Context
 {
+    public class MongoDbSettings
+    {
+        public string ConnectionString { get; set; }
+        public string DatabaseName { get; set; }
+    }
+
     public class MongoDbContext
     {
         private readonly IMongoDatabase _database;
 
-        public MongoDbContext(string connectionString, string dbName)
+        public MongoDbContext(IOptions<MongoDbSettings> settings)
         {
-            var client = new MongoClient(connectionString);
-            _database = client.GetDatabase(dbName);
+            var client = new MongoClient(settings.Value.ConnectionString);
+            _database = client.GetDatabase(settings.Value.DatabaseName);
         }
 
         public IMongoCollection<Product> Products => _database.GetCollection<Product>("Products");

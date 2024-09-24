@@ -5,9 +5,10 @@ using vaulted_commerce.DataAccessLayer.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // MongoDB Context
-builder.Services.AddSingleton<MongoDbContext>(sp =>
-    new MongoDbContext("your_mongodb_connection_string", "your_database_name"));
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection("MongoDB"));
 
+builder.Services.AddSingleton<MongoDbContext>();
 // Register Repositories and Services
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
