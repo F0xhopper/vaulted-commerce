@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("vaulted_commerce.Framework")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+211c57c63b3a83f8710514154346406f2f90316f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5d69fa72b148e9b06cdc7efe024b63d83e20577")]
 [assembly: System.Reflection.AssemblyProductAttribute("vaulted_commerce.Framework")]
 [assembly: System.Reflection.AssemblyTitleAttribute("vaulted_commerce.Framework")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

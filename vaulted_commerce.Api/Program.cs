@@ -12,6 +12,8 @@ builder.Services.AddSingleton<MongoDbContext>();
 // Register Repositories and Services
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 // Add Controllers
 builder.Services.AddControllers();

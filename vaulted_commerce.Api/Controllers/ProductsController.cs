@@ -1,6 +1,6 @@
-// API/Controllers/ProductController.cs
+// API/Controllers/ProductsController.cs
 using Microsoft.AspNetCore.Mvc;
-using vaulted_commerce.Framework.Services; // Access ProductService from Framework
+using vaulted_commerce.Framework.Services; 
 using vaulted_commerce.DataAccessLayer.Entities;
 using vaulted_commerce.Framework.DTOs;
 using System.Collections.Generic;
@@ -19,56 +19,48 @@ namespace vaulted_commerce.Api.Controllers
             _productService = productService;
         }
 
-        // GET: api/Product
-        [HttpGet]
-        public async Task<ActionResult<List<Product>>> Get()
+        // POST: api/Product
+        [HttpPost]
+        public async Task<ActionResult<Product>> Create([FromBody] ProductDto productDto)
         {
-            var products = await _productService.GetAllProductsAsync();
-            return Ok(products);
-        }
-
-        // GET: api/Product/{id}
-        [HttpGet("{id:length(24)}", Name = "GetProduct")]
-        public async Task<ActionResult<Product>> Get(string id)
-        {
-            var product = await _productService.GetProductByIdAsync(id);
-
-            if (product == null)
+            try
             {
-                return NotFound();
+                var createdProduct = await _productService.CreateProductAsync(productDto);
+                return CreatedAtRoute("GetProduct", new { id = createdProduct.Id }, createdProduct);
             }
-
-            return Ok(product);
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
         }
 
-      // POST: api/Product
-[HttpPost]
-public async Task<ActionResult<Product>> Create([FromBody] ProductDto productDto)
-{
-    try
-    {
-        // Call the service to create the product
-        var createdProduct = await _productService.CreateProductAsync(productDto);
-        
-        // Return a 201 Created response with the new product
-        return CreatedAtRoute("GetProduct", new { id = createdProduct.Id }, createdProduct);
-    }
-    catch (ArgumentNullException ex)
-    {
-        // Handle the case where productDto is null
-        return BadRequest(ex.Message);
-    }
-    catch (Exception ex)
-    {
-        // Handle any other exceptions
-        return StatusCode(500, "Internal server error: " + ex.Message);
-    }
-}
+        // POST: api/Product/bulk
+        [HttpPost("bulk")]
+        public async Task<ActionResult> CreateMultiple([FromBody] IEnumerable<ProductDto> productDtos)
+        {
+            try
+            {
+                // Add products to the database
+                await _productService.AddMultipleProductsAsync(productDtos);
+
+                // Return 201 Created status with a success message
+                return StatusCode(201, "Products created successfully.");
+            }
+            catch (Exception ex)
+            {
+                // Return 500 status with error message in case of an exception
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
 
 
-        // PUT: api/Product
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Product>> Update(string id, [FromBody] ProductDto productDto)
+        // PUT: api/Product/{id}
+        [HttpPut]
+        public async Task<ActionResult> Update([FromBody] ProductDto productDto)
         {
             if (productDto == null)
             {
@@ -77,7 +69,7 @@ public async Task<ActionResult<Product>> Create([FromBody] ProductDto productDto
 
             try
             {
-                await _productService.UpdateProductAsync(id, productDto);
+                await _productService.UpdateProductAsync(productDto);
                 return NoContent();  // Return 204 No Content if the update is successful
             }
             catch (KeyNotFoundException ex)
@@ -90,21 +82,67 @@ public async Task<ActionResult<Product>> Create([FromBody] ProductDto productDto
             }
         }
 
-
-
-        // DELETE: api/Product/{id}
-        [HttpDelete("{id:length(24)}")]
-        public async Task<IActionResult> Delete(string id)
+        // PUT: api/Product/bulk
+        [HttpPut("bulk")]
+        public async Task<ActionResult> UpdateMultiple([FromBody] IEnumerable<ProductDto> productDtos)
         {
-            var product = await _productService.GetProductByIdAsync(id);
-
-            if (product == null)
+            if (productDtos == null)
             {
-                return NotFound();
+                return BadRequest("Product data is required.");
             }
 
-            await _productService.DeleteProductAsync(id);
-            return NoContent();
+            try
+            {
+                await _productService.UpdateMultipleProductsAsync(productDtos);
+                return NoContent();  // Return 204 No Content if the updates are successful
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+// DELETE: api/Product/{id}
+[HttpDelete("{id:length(24)}")]
+public async Task<IActionResult> Delete(string id)
+{
+    try
+    {
+        await _productService.DeleteProductAsync(id);
+        return NoContent(); // Return 204 No Content if delete is successful
+    }
+    catch (KeyNotFoundException)
+    {
+        return NotFound(); // Return 404 Not Found if the product does not exist
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, "Internal server error: " + ex.Message); // Return 500 for any other errors
+    }
+}
+
+// DELETE: api/Product/bulk
+[HttpDelete("bulk")]
+public async Task<IActionResult> DeleteMultiple([FromBody] IEnumerable<string> ids)
+{
+    try
+    {
+        await _productService.DeleteMultipleProductsAsync(ids);
+        return NoContent(); // Return 204 No Content if the deletes are successful
+    }
+    catch (KeyNotFoundException)
+    {
+        return NotFound(); // Return 404 Not Found if one or more products do not exist
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, "Internal server error: " + ex.Message); // Return 500 for any other errors
+    }
+}
+
+
     }
 }

@@ -21,5 +21,7 @@ namespace vaulted_commerce.DataAccessLayer.Context
         }
 
         public IMongoCollection<Product> Products => _database.GetCollection<Product>("Products");
+        public IMongoCollection<Order> Orders => _database.GetCollection<Order>("Orders");
+
     }
 }

@@ -11,7 +11,10 @@ namespace vaulted_commerce.Framework.Services
         Task<List<Product>> GetAllProductsAsync();
         Task<Product> GetProductByIdAsync(string id);
         Task<Product> CreateProductAsync(ProductDto productDto);
-        Task UpdateProductAsync(string id, ProductDto productDto);
+        Task AddMultipleProductsAsync(IEnumerable<ProductDto> productDtos); // New method for adding multiple products
+        Task UpdateProductAsync(ProductDto productDto);
+        Task UpdateMultipleProductsAsync(IEnumerable<ProductDto> productDtos); // New method for updating multiple products
         Task DeleteProductAsync(string id);
+        Task DeleteMultipleProductsAsync(IEnumerable<string> ids); // New method for deleting multiple products
     }
 }
