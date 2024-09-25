@@ -10,8 +10,9 @@ namespace vaulted_commerce.Framework.Services
         Task<Order> CreateOrderAsync(OrderDto orderDto);
         Task<Order> GetOrderByIdAsync(string id);
         Task UpdateOrderAsync(OrderDto orderDto);
+        Task<bool> UpdateStockAsync(string productId, int quantityChange);
         Task DeleteOrderAsync(string id);
-        Task<bool> ReduceStockAsync(string productId, int quantity);
+
         Task DeleteMultipleOrdersAsync(IEnumerable<string> ids);
         // Additional methods can be added as needed
     }

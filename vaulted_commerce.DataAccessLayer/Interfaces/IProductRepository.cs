@@ -16,6 +16,7 @@ namespace vaulted_commerce.DataAccessLayer.Repositories
         Task UpdateAsync(Product product);
         Task UpdateManyAsync(IEnumerable<Product> products); // New method for updating multiple products
         Task DeleteAsync(string id);
+        Task UpdateStockAsync(string productId, int newStock);
         Task DeleteManyAsync(IEnumerable<string> ids); // New method for deleting multiple products
     }
 }

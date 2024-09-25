@@ -41,7 +41,13 @@ namespace vaulted_commerce.DataAccessLayer.Repositories
         {
             await _products.ReplaceOneAsync(p => p.Id == product.Id, product);
         }
+        public async Task UpdateStockAsync(string productId, int newStock)
+        {
+            var filter = Builders<Product>.Filter.Eq(p => p.Id, productId); // Find the product by its ID
+            var update = Builders<Product>.Update.Set(p => p.Stock, newStock); // Update the stock only
 
+            await _products.UpdateOneAsync(filter, update);
+        }
         public async Task UpdateManyAsync(IEnumerable<Product> products)
         {
             foreach (var product in products)

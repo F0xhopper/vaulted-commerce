@@ -38,10 +38,10 @@ namespace vaulted_commerce.Framework.Services
                     throw new KeyNotFoundException($"Product with ID {productDto.ProductId} not found.");
                 }
 
-                // Check stock availability and reduce stock
-                var stockReduced = await ReduceStockAsync(productDto.ProductId, productDto.Quantity);
+                // Attempt to reduce stock by the order quantity (pass negative value to reduce stock)
+                var stockUpdated = await UpdateStockAsync(productDto.ProductId, -productDto.Quantity);
                 
-                if (!stockReduced)
+                if (!stockUpdated)
                 {
                     throw new InvalidOperationException($"Not enough stock for product {productDto.ProductId}. Requested: {productDto.Quantity}, Available: {product.Stock}");
                 }
@@ -51,7 +51,7 @@ namespace vaulted_commerce.Framework.Services
                 {
                     ProductId = productDto.ProductId,
                     Quantity = productDto.Quantity,
-                    Price = product.Price // Storing price at the time of order
+                    Price = product.Price // Store price at the time of order
                 });
             }
 
@@ -80,7 +80,8 @@ namespace vaulted_commerce.Framework.Services
             return order; // Return the created order object
         }
 
-        public async Task<bool> ReduceStockAsync(string productId, int quantity)
+
+        public async Task<bool> UpdateStockAsync(string productId, int quantityChange)
         {
             // Fetch the product by its ID
             var product = await _productRepository.GetByIdAsync(productId);
@@ -90,20 +91,22 @@ namespace vaulted_commerce.Framework.Services
                 throw new KeyNotFoundException($"Product with ID {productId} not found.");
             }
 
-            // Check if there's enough stock to fulfill the order
-            if (product.Stock < quantity)
+            // Calculate the new stock amount
+            var newStock = product.Stock + quantityChange;
+
+            // Ensure we don't reduce stock below 0
+            if (newStock < 0)
             {
-                return false; // Insufficient stock
+                return false; // Not enough stock to reduce
             }
 
-            // Reduce the stock
-            product.Stock -= quantity;
+            // Update stock in the repository using the new stock amount
+            await _productRepository.UpdateStockAsync(productId, newStock);
 
-            // Update the product in the repository
-            await _productRepository.UpdateAsync(product);
-
-            return true; // Stock reduced successfully
+            return true; // Stock updated successfully
         }
+
+
 
         public async Task<Order> GetOrderByIdAsync(string id)
         {
